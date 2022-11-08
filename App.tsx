@@ -1,14 +1,18 @@
 import { NavigationContainer } from '@react-navigation/native';
 import useSnackbar from 'src/components/snackbar/useSnackbar';
 import AppContext from 'src/contexts/AppContext';
+import useAuthentication from 'src/hooks/useAuthentication';
 import Routes from 'src/Routes';
 
 const App = () => {
 
   const snackbarHook = useSnackbar();
 
+  const authenticationHook = useAuthentication();
+
   const appContext = {
     ...snackbarHook,
+    ...authenticationHook,
   }
 
   return (
@@ -16,7 +20,9 @@ const App = () => {
       value={appContext}
     >
       <NavigationContainer>
-        <Routes />
+        <Routes
+          currentUser={authenticationHook.currentUser}
+        />
       </NavigationContainer>
     </AppContext.Provider>
   );

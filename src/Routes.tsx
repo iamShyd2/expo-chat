@@ -2,6 +2,8 @@
 import { FC } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './views/Home';
+import { IUser } from './models/user';
+import Login from './views/Login';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,20 +13,29 @@ const makeRoute = (name: string, component: FC) => ({
 })
 
 const routes: any[] = [
+    makeRoute("Login", Login)
+]
+
+const authRoutes: any[] = [
     makeRoute("Home", Home)
 ]
 
-const Routes = () => {
+const mapRoutes = (routes: any[]) => routes.map(({ name, component }, i) =>
+    <Stack.Screen
+        key={i}
+        name={name}
+        component={component}
+    />
+)
+
+const Routes: FC<{ currentUser?: IUser }> = ({ currentUser }) => {
     return (
         <Stack.Navigator>
             {
-                routes.map(({ name, component }, i) =>
-                    <Stack.Screen
-                        key={i}
-                        name={name}
-                        component={component}
-                    />
-                )
+                currentUser ?
+                    mapRoutes(authRoutes)
+                    :
+                    mapRoutes(routes)
             }
         </Stack.Navigator>
     );
