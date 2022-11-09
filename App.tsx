@@ -1,4 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
+import { ActivityIndicator } from 'react-native-paper';
 import useSnackbar from 'src/components/snackbar/useSnackbar';
 import AppContext from 'src/contexts/AppContext';
 import useAuthentication from 'src/hooks/useAuthentication';
@@ -14,6 +15,8 @@ const App = () => {
     ...snackbarHook,
     ...authenticationHook,
   }
+
+  if(authenticationHook.isAuthenticating) return <ActivityIndicator />
 
   return (
     <AppContext.Provider
