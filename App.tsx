@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { ActivityIndicator } from 'react-native-paper';
+import Snackbar from 'src/components/snackbar/Snackbar';
 import useSnackbar from 'src/components/snackbar/useSnackbar';
 import AppContext from 'src/contexts/AppContext';
 import useAuthentication from 'src/hooks/useAuthentication';
@@ -27,6 +28,10 @@ const App = () => {
           currentUser={authenticationHook.currentUser}
         />
       </NavigationContainer>
+      <Snackbar 
+        message={snackbarHook.message}
+        handleDismissSnackBar={snackbarHook.onHideSnackbar}
+      />
     </AppContext.Provider>
   );
 }

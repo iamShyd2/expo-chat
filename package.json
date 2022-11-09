@@ -54,7 +54,9 @@
     "moduleDirectories": [
       "node_modules",
       "src",
-      "src/components"
+      "src/components",
+      "src/views",
+      "src/lib"
     ],
     "setupFiles": [
       "./setupJest.ts"
