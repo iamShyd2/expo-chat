@@ -5,6 +5,8 @@ import useSnackbar from 'src/components/snackbar/useSnackbar';
 import AppContext from 'src/contexts/AppContext';
 import useAuthentication from 'src/hooks/useAuthentication';
 import Routes from 'src/Routes';
+import useFonts from 'src/hooks/useFonts';
+import { useEffect, useState } from 'react';
 
 const App = () => {
 
@@ -16,6 +18,21 @@ const App = () => {
     ...snackbarHook,
     ...authenticationHook,
   }
+
+  const [isReady, setIsReady] = useState(false);
+
+  const loadFonts = async () => {
+    await useFonts();
+    setIsReady(true);
+  };
+
+
+  useEffect(() => {
+    loadFonts()
+  }, []);
+
+
+  if(!isReady) return null;
 
   if(authenticationHook.isAuthenticating) return <ActivityIndicator />
 
