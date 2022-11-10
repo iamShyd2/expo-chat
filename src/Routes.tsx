@@ -30,7 +30,11 @@ const mapRoutes = (routes: any[]) => routes.map(({ name, component }, i) =>
 
 const Routes: FC<{ currentUser?: IUser }> = ({ currentUser }) => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+        >
             {
                 currentUser ?
                     mapRoutes(authRoutes)
