@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { StyleSheet, Text as T, TextProps } from "react-native";
 
-interface ITextProps extends TextProps {
+export interface ITextProps extends TextProps {
 }
 
 const Text: FC<ITextProps> = ({children, style}) => {
