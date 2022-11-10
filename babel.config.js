@@ -6,9 +6,12 @@ module.exports = function(api) {
       [
         "module-resolver",
         {
+          root: ['./src/'],
           alias: {
             "src": "./src",
             "components": "./src/components",
+            "views": "./src/views",
+            "lib": "./src/lib"
           }
         }
       ]
