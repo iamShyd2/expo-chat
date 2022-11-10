@@ -7,6 +7,7 @@ import useAuthentication from 'src/hooks/useAuthentication';
 import Routes from 'src/Routes';
 import useFonts from 'src/hooks/useFonts';
 import { useEffect, useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => {
 
@@ -32,20 +33,26 @@ const App = () => {
   }, []);
 
 
-  if(!isReady) return null;
+  if (!isReady) return null;
 
-  if(authenticationHook.isAuthenticating) return <ActivityIndicator />
+  if (authenticationHook.isAuthenticating) return <ActivityIndicator />
 
   return (
     <AppContext.Provider
       value={appContext}
     >
-      <NavigationContainer>
-        <Routes
-          currentUser={authenticationHook.currentUser}
-        />
-      </NavigationContainer>
-      <Snackbar 
+      <SafeAreaView
+        style={{
+          flex: 1,
+        }}
+      >
+        <NavigationContainer>
+          <Routes
+            currentUser={authenticationHook.currentUser}
+          />
+        </NavigationContainer>
+      </SafeAreaView>
+      <Snackbar
         message={snackbarHook.message}
         handleDismissSnackBar={snackbarHook.onHideSnackbar}
       />
