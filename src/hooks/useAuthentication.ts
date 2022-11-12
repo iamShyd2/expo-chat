@@ -3,7 +3,7 @@ import { apiHost } from "src/consts";
 import { getData } from "src/lib/Storage";
 import { IUser } from "src/models/user";
 
-interface IToken {
+export interface IToken {
     accessToken: string
     client: string
     expiry: string

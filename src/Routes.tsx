@@ -1,7 +1,7 @@
 
 import { FC } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './views/Home';
+import Home from './views/home/Home';
 import { IUser } from './models/user';
 import Login from './views/login/Login';
 
